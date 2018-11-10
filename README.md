@@ -1,17 +1,13 @@
-# Revista
+# WORK IN PROGRESS
 
-Revista is a reference Elixir umbrella project deployed to AWS ECS with Docker
-and Terraform. It was originally created for demonstration purposes in two talks
-given by NewAperio:
+**This is a fork of https://github.com/newaperio/revista, with the intent of migrating the infrastructure from ECS to EKS.**
 
-1. Internal lunch and learn on umbrella apps
-2. [Big Elixir] talk on deploying Elixir to AWS
-
-[big elixir]: https://newaperio.com/blog/the-big-elixir
+This is a reference Elixir umbrella project deployed to AWS ECS with Docker
+and Terraform.
 
 ## Umbrella App
 
-**Nick to add**
+Initial work will be towards deploying the umbrella application into EKS as a single release on a single Docker image, but the eventual goal will be to build separate releases and Docker images per app (with `mix release.init --release-per-app`), to allow apps in the umbrella to be deployed and scaled independently within a Kubernetes cluster.
 
 ## Docker
 
