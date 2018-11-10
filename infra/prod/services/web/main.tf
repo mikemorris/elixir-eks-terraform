@@ -236,23 +236,9 @@ resource "aws_ecs_cluster" "this" {
   name = "${var.name_prefix}"
 }
 
-resource "aws_ecs_task_definition" "migrate_auth" {
-  family                   = "${var.name_prefix}-migrate-auth"
-  container_definitions    = "${file("task-definitions/migrate-auth.json")}"
-  network_mode             = "bridge"
-  cpu                      = 512
-  memory                   = 512
-  requires_compatibilities = ["EC2"]
-
-  volume {
-    name      = "app"
-    host_path = "/app"
-  }
-}
-
-resource "aws_ecs_task_definition" "migrate_cms" {
-  family                   = "${var.name_prefix}-migrate-cms"
-  container_definitions    = "${file("task-definitions/migrate-cms.json")}"
+resource "aws_ecs_task_definition" "migrate_core" {
+  family                   = "${var.name_prefix}-migrate-core"
+  container_definitions    = "${file("task-definitions/migrate-core.json")}"
   network_mode             = "bridge"
   cpu                      = 512
   memory                   = 512

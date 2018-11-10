@@ -56,18 +56,14 @@ release :revista do
   set(
     applications: [
       :runtime_tools,
-      admin: :permanent,
-      auth: :permanent,
-      cms: :permanent,
-      twitter: :permanent,
-      web: :permanent
+      chat: :permanent,
+      core: :permanent
     ]
   )
 
   set(
     commands: [
-      migrate_auth: "rel/commands/migrate_auth.sh",
-      migrate_cms: "rel/commands/migrate_cms.sh"
+      migrate_core: "rel/commands/migrate_core.sh"
     ]
   )
 

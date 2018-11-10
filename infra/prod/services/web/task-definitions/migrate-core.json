@@ -27,7 +27,7 @@
         "containerPort": 4002
       }
     ],
-    "command": ["/opt/app/bin/revista", "migrate_auth"],
+    "command": ["/opt/app/bin/revista", "migrate_core"],
     "linuxParameters": null,
     "cpu": 0,
     "environment": [
