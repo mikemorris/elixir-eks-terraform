@@ -15,58 +15,23 @@ alias Revista.ConfigHelpers
 
 # Set Configuration
 
-admin = %{
-  port: ConfigHelpers.integer_var("ADMIN_PORT", 4001),
-  secret_key_base: System.get_env("ADMIN_SECRET_KEY_BASE")
+chat = %{
+  port: ConfigHelpers.integer_var("CHAT_PORT", 4001),
+  secret_key_base: System.get_env("CHAT_SECRET_KEY_BASE")
 }
 
-auth = %{
-  pool_size: ConfigHelpers.integer_var("AUTH_POOL_SIZE", 10),
-  database_url: System.get_env("AUTH_DATABASE_URL")
-}
-
-cms = %{
-  pool_size: ConfigHelpers.integer_var("CMS_POOL_SIZE", 10),
-  database_url: System.get_env("CMS_DATABASE_URL")
-}
-
-twitter = %{
-  bearer_token: System.get_env("TWITTER_BEARER_TOKEN"),
-  port: ConfigHelpers.integer_var("TWITTER_PORT", 4002),
-  screen_name: System.get_env("TWITTER_SCREEN_NAME"),
-  secret_key_base: System.get_env("TWITTER_SECRET_KEY_BASE")
-}
-
-web = %{
-  port: ConfigHelpers.integer_var("WEB_PORT", 4003),
-  secret_key_base: System.get_env("WEB_SECRET_KEY_BASE")
+core = %{
+  pool_size: ConfigHelpers.integer_var("CORE_POOL_SIZE", 10),
+  database_url: System.get_env("CORE_DATABASE_URL")
 }
 
 # Apply Configuration
 
-config :admin, Admin.Endpoint,
-  http: [:inet6, port: admin[:port]],
-  url: [host: "localhost", port: admin[:port]],
-  secret_key_base: admin[:secret_key_base]
+config :chat, Chat.Endpoint,
+  http: [:inet6, port: chat[:port]],
+  url: [host: "localhost", port: chat[:port]],
+  secret_key_base: chat[:secret_key_base]
 
-config :auth, Auth.Repo,
-  url: auth[:database_url],
-  pool_size: auth[:pool_size]
-
-config :cms, CMS.Repo,
-  url: cms[:database_url],
-  pool_size: cms[:pool_size]
-
-config :twitter, Twitter.Endpoint,
-  http: [:inet6, port: twitter[:port]],
-  url: [host: "localhost", port: twitter[:port]],
-  secret_key_base: twitter[:secret_key_base]
-
-config :twitter, Twitter.HTTPClient,
-  bearer_token: twitter[:bearer_token],
-  screen_name: twitter[:screen_name]
-
-config :web, Web.Endpoint,
-  http: [:inet6, port: web[:port]],
-  url: [host: "localhost", port: web[:port]],
-  secret_key_base: web[:secret_key_base]
+config :core, Core.Repo,
+  url: core[:database_url],
+  pool_size: core[:pool_size]
